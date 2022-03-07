@@ -1,0 +1,27 @@
+- hosts: node1
+  tasks: 
+    - name: first add three groups
+      group:
+          name: "{{ item }}"
+          state: present
+      with_items:
+          - staff
+          - guests
+          - manager
+
+    - name: add user and apply password
+      user: 
+         name: "{{ item.x }}"
+         uid: "{{ item.y }}"
+         group: "{{ item.g }}"
+         password: "{{ item.p | password_hash('sha512') }}"
+      with_item:
+         - { x: 'manish', y: '1050', g: 'staff', p: 'redhat'}
+         - { x: 'shyam', y: '1051', g: 'manager', p: 'redhat123'}
+         - { x: 'neha', y: '1052', g: 'guests', p: 'common'}
+
+    - debug: 
+        msg: "{{ item.x }}  {{ item.y }} {{ item.g }} {{item.p}}"
+      with_items:
+         - { x: 'manish', y: '1050', g: 'staff', p: 'redhat'}
+         - { x: 'neha', y: '1052', g: 'guests', p: 'common'}
