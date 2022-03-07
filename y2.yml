@@ -1,0 +1,23 @@
+- hosts:
+  - node1
+  - node2
+  gather_facts: false
+  tasks:
+   - file:
+       path: /tmp/test
+       state: directory
+       mode: 0777
+       owner: ansible
+       group: wheel
+
+
+   - copy:
+       src: /etc/fstab
+       dest: /tmp/test
+
+
+   - service:
+       name: crond
+       state: restarted
+
+  

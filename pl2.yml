@@ -1,0 +1,17 @@
+- name: example of playbook but in prompt mode
+  hosts: node1
+  vars_prompt: 
+        - name: a
+          prompt: "what is your user name"
+          private: no
+        - name: b
+          prompt: "what is your password"
+          private: yes
+
+  tasks: 
+    - name: please add user and set password whatever they want
+      user:
+         name: "{{ a }}"
+         password: "{{ b | password_hash('sha512') }}"
+         state: present         
+
