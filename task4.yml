@@ -1,0 +1,9 @@
+- hosts: all
+  tasks: 
+      - name: to checkthe no of runnig taks
+        shell: ps -e | wc -l
+        register: result
+
+      - name: show result
+        debug:
+          var: result
