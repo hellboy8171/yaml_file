@@ -1,0 +1,24 @@
+- name: Example of playbook level
+  hosts: node1
+  become: true
+  vars_files:
+     - /home/ansible/variable.yml
+   
+
+  tasks: 
+    - name: Install httpd
+      yum:
+         name: "{{ webpkg}}"
+         state: installed
+
+    - name: create abc.html page into "{ {webroot }}"
+      copy: 
+        content: "this is apache patch number {{ patch }}"
+        dest: "{{ webroot }}/abc.html"
+
+
+    - name: Service Start
+      service: 
+        name: "{{ webpkg }}"
+        state: started
+        enabled: true

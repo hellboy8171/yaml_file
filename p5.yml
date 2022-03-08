@@ -1,0 +1,28 @@
+- name: Deploying web server 
+  hosts: node1
+  user: ansible
+  become: true
+  become_method: sudo
+  become_user: root
+  
+  gather_facts: false
+  tasks:
+   - name: create directory into /tmp/test
+     file:
+       path: /tmp/test
+       state: directory
+       mode: 0777
+       owner: ansible
+       group: wheel
+
+   - name: copy the file 
+     copy:
+       src: /etc/fstab
+       dest: /tmp/test
+
+   - name: restart the service
+     service:
+       name: crond
+       state: restarted
+
+  
