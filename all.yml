@@ -1,0 +1,17 @@
+---
+- name: Check Disk Space Usage
+  hosts: all
+  tasks:
+          - name: Disk usage from command module
+            command: df -h
+            register: space
+          - debug:
+                  var: space.stdout_lines
+
+
+          - name: Memory 
+            include_tasks: /root/shyam.yml  
+
+          - name: CPU
+            include_tasks: /root/depd2.yml        
+

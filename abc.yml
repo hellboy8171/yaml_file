@@ -1,0 +1,9 @@
+- hosts: localhost
+  tasks:
+    - name: Hardware info
+      debug: 
+         msg: >
+                "total memory is : {{ ansible_memtotal_mb }} and Toatal swap memory
+                       available is {{ ansible_memory_mb.swap.total }}"
+      
+
