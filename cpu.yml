@@ -6,4 +6,4 @@
               top | head -3 | tail -1
        register: result
      - debug:
-          var: result.stdout_lines 
+          var: result
