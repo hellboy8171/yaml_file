@@ -1,3 +1,4 @@
+# memory_details
 - hosts: localhost
   tasks:
     - name: Hardware info

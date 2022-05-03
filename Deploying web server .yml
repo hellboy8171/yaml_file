@@ -1,3 +1,4 @@
+# Deploying web server 
 - name: Deploying web server 
   hosts: node1
   tasks:

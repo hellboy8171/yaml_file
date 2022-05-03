@@ -1,3 +1,4 @@
+# cpu details
 - hosts: all
   name: Total Cpu Utilization
   tasks:
