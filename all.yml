@@ -6,7 +6,7 @@
             command: df -h
             register: space
           - debug:
-                  var: space.stdout_lines
+                  var: space.stdout_linesSS
 
 
           - name: Memory 
